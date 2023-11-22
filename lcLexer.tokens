@@ -1,0 +1,10 @@
+ID=1
+SELECT=2
+FROM=3
+STAR=4
+SEMICOLON=5
+WS=6
+'SELECT'=2
+'FROM'=3
+'*'=4
+';'=5
