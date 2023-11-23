@@ -1,6 +1,6 @@
-# Generated from lc.g4 by ANTLR 4.12.0
+# Generated from lc.g4 by ANTLR 4.13.1
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .lcParser import lcParser
 else:
     from lcParser import lcParser
@@ -9,8 +9,8 @@ else:
 
 class lcVisitor(ParseTreeVisitor):
 
-    # Visit a parse tree produced by lcParser#sql_query.
-    def visitSql_query(self, ctx:lcParser.Sql_queryContext):
+    # Visit a parse tree produced by lcParser#select.
+    def visitSelect(self, ctx:lcParser.SelectContext):
         return self.visitChildren(ctx)
 
 

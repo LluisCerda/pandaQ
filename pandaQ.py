@@ -12,21 +12,24 @@ class EvalVisitor(lcVisitor):
         self.selected_table = None
 
     # Override the visitSql_query method
-    def visitSql_query(self, ctx):
+    def visitSelect(self, ctx):
         # Extract table name from the context
         table_name = ctx.ID().getText()
 
         data_frame = pd.read_csv(dataPath + table_name + ".csv")
+        print(data_frame)
         self.selected_table = data_frame
         
         return self.selected_table
 
 def execute_query(query):
     
-    lexer = lcLexer(query)
+    input_stream = InputStream(query)
+    lexer = lcLexer(input_stream)
     token_stream = CommonTokenStream(lexer)
     parser = lcParser(token_stream)
-    tree = parser.sql_query()
+
+    tree = parser.select()
 
     eval_visitor = EvalVisitor()
 

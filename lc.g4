@@ -1,20 +1,10 @@
 grammar lc;
 
-// Define lexer rules
-fragment DIGIT: [0-9];
-fragment LETTER: [a-zA-Z];
-fragment UNDERSCORE: '_';
+SELECT: 'select';
+FROM: 'from';
+ID: [a-zA-Z]+; 
 
-ID: (LETTER | UNDERSCORE) (LETTER | DIGIT | UNDERSCORE)*;
+select: SELECT '*' FROM ID ';';
 
-SELECT: 'SELECT';
-FROM: 'FROM';
-STAR: '*';
-SEMICOLON: ';';
-
-// Define parser rules
-sql_query: SELECT STAR FROM ID SEMICOLON;
-
-// Skip whitespaces and newlines
-WS: [ \t\r\n]+ -> skip;
+SPACES: [ \t\r\n] -> skip;
 
