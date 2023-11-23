@@ -8,19 +8,40 @@ import pandas as pd
 dataPath = 'data/'
 
 class EvalVisitor(lcVisitor):
-    def __init__(self):
-        self.selected_table = None
-
-    # Override the visitSql_query method
+    
     def visitSelect(self, ctx):
-        # Extract table name from the context
         table_name = ctx.ID().getText()
 
-        data_frame = pd.read_csv(dataPath + table_name + ".csv")
-        print(data_frame)
-        self.selected_table = data_frame
-        
-        return self.selected_table
+        if ctx.getChild(1).getText() == '*':
+            data_frame = pd.read_csv(dataPath + table_name + ".csv")
+        else:
+            column_list = self.visit(ctx.columnList())
+            print(column_list)
+            data_frame = pd.read_csv(dataPath + table_name + ".csv", usecols=column_list)
+
+        return data_frame
+    
+def visitColumnList(self, ctx):
+    expressions = [self.visit(expr) for expr in ctx.expression()]
+    return expressions
+
+def visitExpression(self, ctx):
+    if ctx.ID():
+        return ctx.ID().getText()
+    elif ctx.getChildCount() == 3:  # Binary operations
+        left_operand = self.visit(ctx.getChild(0))
+        operator = ctx.getChild(1).getText()
+        right_operand = self.visit(ctx.getChild(2))
+        return f"{left_operand} {operator} {right_operand}"
+    elif ctx.getChildCount() == 4:  # Parentheses
+        return self.visit(ctx.getChild(1))
+    elif ctx.getChildCount() == 3 and ctx.getChild(1).getText() == 'as':  # Alias
+        return f"{self.visit(ctx.getChild(0))} as {ctx.ID().getText()}"
+    else:
+        raise NotImplementedError("Expression not supported: " + ctx.getText())
+
+    
+
 
 def execute_query(query):
     

@@ -14,5 +14,10 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by lcParser#columnList.
+    def visitColumnList(self, ctx:lcParser.ColumnListContext):
+        return self.visitChildren(ctx)
+
+
 
 del lcParser

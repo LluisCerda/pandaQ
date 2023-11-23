@@ -2,9 +2,19 @@ grammar lc;
 
 SELECT: 'select';
 FROM: 'from';
-ID: [a-zA-Z]+; 
+ID: [a-zA-Z0-9_]+;
 
-select: SELECT '*' FROM ID ';';
+select: SELECT columnList FROM ID ';';
+columnList: '*' | expression (',' expression)*;
 
-SPACES: [ \t\r\n] -> skip;
+expression: ID #Identifier
+          | ID '*' expression        # Mult
+          | ID '+' expression        # Sum
+          | ID '-' expression        # Subst
+          | ID '/' expression        # Div
+          | '(' expression ')'       # Phar
+          | ID 'as' ID               # Alias
+;
+
+Spaces: [\t\r\n] -> skip;
 
