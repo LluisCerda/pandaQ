@@ -5,16 +5,19 @@ FROM: 'from';
 ID: [a-zA-Z0-9_]+;
 
 select: SELECT columnList FROM ID ';';
-columnList: '*' | expression (',' expression)*;
+columnList: '*' | column (',' column)*;
+
+column: ID
+    | expression 'as' ID
+ ;
 
 expression: ID #Identifier
-          | ID '*' expression        # Mult
-          | ID '+' expression        # Sum
-          | ID '-' expression        # Subst
-          | ID '/' expression        # Div
-          | '(' expression ')'       # Phar
-          | ID 'as' ID               # Alias
+          | expression '*' ID        # Mult
+          | expression '+' ID       # Sum
+          | expression '-' ID        # Subst
+          | expression '/' ID        # Div
+          | '(' expression ')'         # Phar
 ;
 
-Spaces: [\t\r\n] -> skip;
+Spaces: [ \t\r\n] -> skip;
 

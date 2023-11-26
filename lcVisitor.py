@@ -19,5 +19,40 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by lcParser#column.
+    def visitColumn(self, ctx:lcParser.ColumnContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Div.
+    def visitDiv(self, ctx:lcParser.DivContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Identifier.
+    def visitIdentifier(self, ctx:lcParser.IdentifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Mult.
+    def visitMult(self, ctx:lcParser.MultContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Subst.
+    def visitSubst(self, ctx:lcParser.SubstContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Sum.
+    def visitSum(self, ctx:lcParser.SumContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Phar.
+    def visitPhar(self, ctx:lcParser.PharContext):
+        return self.visitChildren(ctx)
+
+
 
 del lcParser
