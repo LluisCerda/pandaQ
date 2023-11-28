@@ -4,25 +4,46 @@ from lcParser import lcParser
 from lcVisitor import lcVisitor
 import streamlit as st
 import pandas as pd
-from antlr4.tree import Trees
 
 dataPath = 'data/'
 
 class EvalVisitor(lcVisitor):
+
+    def __init__(self):
+        self.newCols = []
+        self.newColsNames = []
+        self.tableName = None
     
     def visitSelect(self, ctx):
         
-        table_name = ctx.ID().getText()
+        self.tableName = ctx.ID().getText()
 
         if ctx.getChild(1).getText() == '*':
-            data_frame = pd.read_csv(dataPath + table_name + ".csv")
+            data_frame = pd.read_csv(dataPath + self.tableName + ".csv")
         else:
             column_list = self.visit(ctx.columnList())
-            print(column_list)
-            data_frame = pd.read_csv(dataPath + table_name + ".csv", usecols=column_list)
+            data_frame = pd.read_csv(dataPath + self.tableName + ".csv", usecols=column_list)
+            for id, data in zip(self.newColsNames, self.newCols):
+                data_frame[id] = data
+
+        if ctx.constraintList():
+            constraintsIDs, constraintOrders = self.visit(ctx.constraintList())
+            data_frame = data_frame.sort_values(by=constraintsIDs, ascending=constraintOrders)
 
         return data_frame
     
+    def visitConstraintList(self, ctx):
+        constraintIDs = []
+        constraintOrders = []
+        for constraint in ctx.constraint():
+            id = constraint.ID().getText()
+            order = constraint.getChild(1).getText()
+
+            constraintIDs.append(id)
+            constraintOrders.append(order == "asc")
+        
+        return constraintIDs, constraintOrders
+
     def visitColumnList(self, ctx):
         columns = []
         for col in ctx.column():
@@ -34,27 +55,20 @@ class EvalVisitor(lcVisitor):
         if ctx.getChildCount() == 1:
             return ctx.ID().getText()
         else:
-            print(ctx.getChild(0).getText(), ctx.getChild(1).getText(), ctx.getChild(2).getText())
+            newColumnName = ctx.getChild(2).getText()
+            self.newColsNames.append(newColumnName)
+            newColumn = self.visit(ctx.getChild(0))
+            self.newCols.append(newColumn)
 
-    def visitExpression(self, ctx):
-        print("enters")
-        if ctx.ID():
-            print(ctx.ID().getText())
-            return ctx.ID().getText()
+    def visitIdentifier(self, ctx):
+        return ctx.ID().getText()
 
-        elif ctx.getChildCount() == 3 and ctx.getChild(0).getText() == '(':  # Phar
-            self.visit(ctx.getChild(1))
-
-        elif ctx.getChildCount() == 3:  # Binary operations
-            column_id = self.visit(ctx.getChild(0))
-            operator = ctx.getChild(1).getText()
-            num = self.visit(ctx.getChild(2))
-            print(column_id, operator, num)
-    
-        else:
-            raise NotImplementedError("Expression not supported: " + ctx.getText())
-
-    
+    def visitMult(self, ctx):
+        column_id = self.visit(ctx.getChild(0))
+        num = ctx.getChild(2).getText()
+        data_frame = pd.read_csv(dataPath + self.tableName + ".csv", usecols=[column_id])
+        data_frame = data_frame * float(num)
+        return data_frame
 
 
 def execute_query(query):

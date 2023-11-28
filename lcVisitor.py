@@ -24,6 +24,16 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by lcParser#constraintList.
+    def visitConstraintList(self, ctx:lcParser.ConstraintListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#constraint.
+    def visitConstraint(self, ctx:lcParser.ConstraintContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by lcParser#Div.
     def visitDiv(self, ctx:lcParser.DivContext):
         return self.visitChildren(ctx)
