@@ -5,6 +5,13 @@ from lcVisitor import lcVisitor
 import streamlit as st
 import pandas as pd
 
+#TODO
+####################################################
+# Canviar nom constraintList?
+# Num a gramatica
+# Acabar implementacio INNER JOIN
+####################################################
+
 dataPath = 'data/'
 
 class EvalVisitor(lcVisitor):
@@ -13,6 +20,7 @@ class EvalVisitor(lcVisitor):
         self.newCols = []
         self.newColsNames = []
         self.tableName = None
+        self.dataFrame = None
     
     def visitSelect(self, ctx):
         
@@ -26,12 +34,38 @@ class EvalVisitor(lcVisitor):
             for id, data in zip(self.newColsNames, self.newCols):
                 data_frame[id] = data
 
+        self.dataFrame = data_frame
+
+        if ctx.conditionList():
+            conditionStr = self.visit(ctx.conditionList())
+            data_frame = data_frame.query(conditionStr)
+
         if ctx.constraintList():
             constraintsIDs, constraintOrders = self.visit(ctx.constraintList())
             data_frame = data_frame.sort_values(by=constraintsIDs, ascending=constraintOrders)
 
         return data_frame
     
+    def visitConditionList(self, ctx):
+        conditionList = []
+        for condition in ctx.condition():
+            conditionList.append(self.visit(condition))
+        
+        conditionStr = " and ".join(conditionList)
+        return conditionStr
+
+    def visitEquals(self, ctx):
+        return ctx.getChild(0).getText() + " == " + ctx.getChild(2).getText()
+    
+    def visitMinor(self, ctx):
+        return ctx.getChild(0).getText() + " < " + ctx.getChild(2).getText()
+    
+    def visitNotEquals(self, ctx):
+        return "not " + ctx.getChild(1).getText() + " == " + ctx.getChild(3).getText()
+    
+    def visitNotMinor(self, ctx):
+        return "not " + ctx.getChild(1).getText() + " < " + ctx.getChild(3).getText()
+
     def visitConstraintList(self, ctx):
         constraintIDs = []
         constraintOrders = []
@@ -86,16 +120,15 @@ def execute_query(query):
     return result
 
 def main():
+    
     st.title("PandaQ")
-
     query_input = st.text_area("Ingrese su consulta SQL:", height=20)
-
-    # Agregar un botón para enviar la consulta
+    
     if st.button("Enviar Consulta"):
-        # Verificar si la consulta no está vacía
-        if query_input.strip():
+        
+        if query_input:
             result_df = execute_query(query_input)
-            # Mostrar los resultados en una tabla
+            
             st.write("Resultados de la Consulta:")
             st.dataframe(result_df)
         else:
