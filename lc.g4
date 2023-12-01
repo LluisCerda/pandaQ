@@ -11,6 +11,8 @@ JOIN: 'join';
 ON: 'on';
 ID: [a-zA-Z0-9_.]+;
 
+assignation: ID ':=' select ;
+
 select: SELECT columnList FROM ID ';'
  | SELECT columnList FROM ID ORDER BY constraintList ';'
  | SELECT columnList FROM ID WHERE conditionList ';'

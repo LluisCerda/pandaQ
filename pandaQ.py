@@ -5,46 +5,73 @@ from lcVisitor import lcVisitor
 import streamlit as st
 import pandas as pd
 
+'''
+example:
+
+select first_name, last_name, job_title, department_name 
+from employees inner join departments on department_id = department_id 
+inner join jobs on job_id = job_id where job_title = Programmer order by first_name asc;
+'''
+
 #TODO
 ####################################################
+# revisar visit Minor, not Minot, not Equal
+# Només hi ha implementada la multiplicacio
 # Canviar nom constraintList?
 # Num a gramatica
 # Acabar implementacio INNER JOIN
+# ReadME.md
 ####################################################
 
 dataPath = 'data/'
+asignations = {}
 
 class EvalVisitor(lcVisitor):
 
     def __init__(self):
-        self.newCols = []
-        self.newColsNames = []
-        self.tableName = None
         self.dataFrame = None
+
+    def visitAssignation(self, ctx):
+        print("enters")
+        if 'asignations' not in st.session_state:
+            st.session_state.asignations = {}
+        st.session_state.asignation[ctx.ID().getText()] = self.visit(ctx.select())
     
     def visitSelect(self, ctx):
         
-        self.tableName = ctx.ID().getText()
+        tableName = ctx.ID().getText()
+        if not 'asignations' in st.session_state:        
+            if tableName in st.session_state.asignations:
+                self.dataFrame = st.session_state.asignations[tableName]
+            else: self.dataFrame = pd.read_csv(dataPath + ctx.ID().getText() + ".csv")
+        else: self.dataFrame = pd.read_csv(dataPath + ctx.ID().getText() + ".csv")
 
-        if ctx.getChild(1).getText() == '*':
-            data_frame = pd.read_csv(dataPath + self.tableName + ".csv")
-        else:
-            column_list = self.visit(ctx.columnList())
-            data_frame = pd.read_csv(dataPath + self.tableName + ".csv", usecols=column_list)
-            for id, data in zip(self.newColsNames, self.newCols):
-                data_frame[id] = data
+        columns = self.visit(ctx.columnList())
 
-        self.dataFrame = data_frame
+        if ctx.innerJoinList():
+            self.visit(ctx.innerJoinList())
 
         if ctx.conditionList():
             conditionStr = self.visit(ctx.conditionList())
-            data_frame = data_frame.query(conditionStr)
+            print(conditionStr)
+            print(self.dataFrame)
+            self.dataFrame = self.dataFrame.query(conditionStr)
 
         if ctx.constraintList():
             constraintsIDs, constraintOrders = self.visit(ctx.constraintList())
-            data_frame = data_frame.sort_values(by=constraintsIDs, ascending=constraintOrders)
+            self.dataFrame = self.dataFrame.sort_values(by=constraintsIDs, ascending=constraintOrders)
 
-        return data_frame
+        return self.dataFrame[columns]
+    
+    def visitInnerJoinList(self, ctx):
+
+        for innerJoin in ctx.innerJoin():
+
+            table = innerJoin.getChild(2).getText()
+            onId = innerJoin.getChild(4).getText()
+
+            newDataFrame = pd.read_csv(dataPath + table + ".csv")
+            self.dataFrame = self.dataFrame.merge(newDataFrame, on=onId, how='inner')
     
     def visitConditionList(self, ctx):
         conditionList = []
@@ -55,7 +82,9 @@ class EvalVisitor(lcVisitor):
         return conditionStr
 
     def visitEquals(self, ctx):
-        return ctx.getChild(0).getText() + " == " + ctx.getChild(2).getText()
+        if not isNumber(ctx.getChild(2).getText()):
+            return ctx.getChild(0).getText() + " == " + "'" + ctx.getChild(2).getText() + "'"
+        else: return ctx.getChild(0).getText() + " == " + ctx.getChild(2).getText() 
     
     def visitMinor(self, ctx):
         return ctx.getChild(0).getText() + " < " + ctx.getChild(2).getText()
@@ -79,10 +108,11 @@ class EvalVisitor(lcVisitor):
         return constraintIDs, constraintOrders
 
     def visitColumnList(self, ctx):
+            
         columns = []
         for col in ctx.column():
-            id = self.visit(col)
-            if id != None: columns.append(id)
+            columns.append(self.visit(col))
+
         return columns
 
     def visitColumn(self, ctx):
@@ -90,20 +120,23 @@ class EvalVisitor(lcVisitor):
             return ctx.ID().getText()
         else:
             newColumnName = ctx.getChild(2).getText()
-            self.newColsNames.append(newColumnName)
             newColumn = self.visit(ctx.getChild(0))
-            self.newCols.append(newColumn)
+            self.dataFrame[newColumnName] = newColumn
+            return newColumnName
 
+    def visitMult(self, ctx):
+        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
+        return oldColumn * float(ctx.getChild(2).getText())
+    
     def visitIdentifier(self, ctx):
         return ctx.ID().getText()
 
-    def visitMult(self, ctx):
-        column_id = self.visit(ctx.getChild(0))
-        num = ctx.getChild(2).getText()
-        data_frame = pd.read_csv(dataPath + self.tableName + ".csv", usecols=[column_id])
-        data_frame = data_frame * float(num)
-        return data_frame
-
+def isNumber(s):
+    try:
+        float(s)
+        return True
+    except ValueError:
+        return False
 
 def execute_query(query):
     

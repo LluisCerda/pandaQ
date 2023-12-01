@@ -9,8 +9,23 @@ else:
 
 class lcVisitor(ParseTreeVisitor):
 
+    # Visit a parse tree produced by lcParser#assignation.
+    def visitAssignation(self, ctx:lcParser.AssignationContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by lcParser#select.
     def visitSelect(self, ctx:lcParser.SelectContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#innerJoinList.
+    def visitInnerJoinList(self, ctx:lcParser.InnerJoinListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#innerJoin.
+    def visitInnerJoin(self, ctx:lcParser.InnerJoinContext):
         return self.visitChildren(ctx)
 
 
