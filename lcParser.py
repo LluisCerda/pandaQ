@@ -10,68 +10,73 @@ else:
 
 def serializedATN():
     return [
-        4,1,26,187,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
-        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,1,0,1,0,1,0,1,0,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
-        1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,89,8,1,1,2,1,2,5,
-        2,93,8,2,10,2,12,2,96,9,2,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,4,1,
-        4,1,4,1,4,5,4,110,8,4,10,4,12,4,113,9,4,3,4,115,8,4,1,5,1,5,1,5,
-        1,5,1,5,3,5,122,8,5,1,6,1,6,1,6,5,6,127,8,6,10,6,12,6,130,9,6,1,
-        7,1,7,1,7,1,7,3,7,136,8,7,1,8,1,8,1,8,5,8,141,8,8,10,8,12,8,144,
-        9,8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,
-        160,8,9,1,10,1,10,1,10,1,10,1,10,1,10,3,10,168,8,10,1,10,1,10,1,
-        10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,5,10,182,8,10,10,
-        10,12,10,185,9,10,1,10,0,1,20,11,0,2,4,6,8,10,12,14,16,18,20,0,0,
-        196,0,22,1,0,0,0,2,88,1,0,0,0,4,90,1,0,0,0,6,97,1,0,0,0,8,114,1,
-        0,0,0,10,121,1,0,0,0,12,123,1,0,0,0,14,135,1,0,0,0,16,137,1,0,0,
-        0,18,159,1,0,0,0,20,167,1,0,0,0,22,23,5,25,0,0,23,24,5,1,0,0,24,
-        25,3,2,1,0,25,1,1,0,0,0,26,27,5,16,0,0,27,28,3,8,4,0,28,29,5,17,
-        0,0,29,30,5,25,0,0,30,31,5,2,0,0,31,89,1,0,0,0,32,33,5,16,0,0,33,
-        34,3,8,4,0,34,35,5,17,0,0,35,36,5,25,0,0,36,37,5,18,0,0,37,38,5,
-        19,0,0,38,39,3,12,6,0,39,40,5,2,0,0,40,89,1,0,0,0,41,42,5,16,0,0,
-        42,43,3,8,4,0,43,44,5,17,0,0,44,45,5,25,0,0,45,46,5,20,0,0,46,47,
-        3,16,8,0,47,48,5,2,0,0,48,89,1,0,0,0,49,50,5,16,0,0,50,51,3,8,4,
-        0,51,52,5,17,0,0,52,53,5,25,0,0,53,54,5,20,0,0,54,55,3,16,8,0,55,
-        56,5,18,0,0,56,57,5,19,0,0,57,58,3,12,6,0,58,59,5,2,0,0,59,89,1,
-        0,0,0,60,61,5,16,0,0,61,62,3,8,4,0,62,63,5,17,0,0,63,64,5,25,0,0,
-        64,65,3,4,2,0,65,66,5,2,0,0,66,89,1,0,0,0,67,68,5,16,0,0,68,69,3,
-        8,4,0,69,70,5,17,0,0,70,71,5,25,0,0,71,72,3,4,2,0,72,73,5,20,0,0,
-        73,74,3,16,8,0,74,75,5,2,0,0,75,89,1,0,0,0,76,77,5,16,0,0,77,78,
-        3,8,4,0,78,79,5,17,0,0,79,80,5,25,0,0,80,81,3,4,2,0,81,82,5,20,0,
-        0,82,83,3,16,8,0,83,84,5,18,0,0,84,85,5,19,0,0,85,86,3,12,6,0,86,
-        87,5,2,0,0,87,89,1,0,0,0,88,26,1,0,0,0,88,32,1,0,0,0,88,41,1,0,0,
-        0,88,49,1,0,0,0,88,60,1,0,0,0,88,67,1,0,0,0,88,76,1,0,0,0,89,3,1,
-        0,0,0,90,94,3,6,3,0,91,93,3,6,3,0,92,91,1,0,0,0,93,96,1,0,0,0,94,
-        92,1,0,0,0,94,95,1,0,0,0,95,5,1,0,0,0,96,94,1,0,0,0,97,98,5,22,0,
-        0,98,99,5,23,0,0,99,100,5,25,0,0,100,101,5,24,0,0,101,102,5,25,0,
-        0,102,103,5,3,0,0,103,104,5,25,0,0,104,7,1,0,0,0,105,115,5,4,0,0,
-        106,111,3,10,5,0,107,108,5,5,0,0,108,110,3,10,5,0,109,107,1,0,0,
-        0,110,113,1,0,0,0,111,109,1,0,0,0,111,112,1,0,0,0,112,115,1,0,0,
-        0,113,111,1,0,0,0,114,105,1,0,0,0,114,106,1,0,0,0,115,9,1,0,0,0,
-        116,122,5,25,0,0,117,118,3,20,10,0,118,119,5,6,0,0,119,120,5,25,
-        0,0,120,122,1,0,0,0,121,116,1,0,0,0,121,117,1,0,0,0,122,11,1,0,0,
-        0,123,128,3,14,7,0,124,125,5,5,0,0,125,127,3,14,7,0,126,124,1,0,
-        0,0,127,130,1,0,0,0,128,126,1,0,0,0,128,129,1,0,0,0,129,13,1,0,0,
-        0,130,128,1,0,0,0,131,132,5,25,0,0,132,136,5,7,0,0,133,134,5,25,
-        0,0,134,136,5,8,0,0,135,131,1,0,0,0,135,133,1,0,0,0,136,15,1,0,0,
-        0,137,142,3,18,9,0,138,139,5,9,0,0,139,141,3,18,9,0,140,138,1,0,
-        0,0,141,144,1,0,0,0,142,140,1,0,0,0,142,143,1,0,0,0,143,17,1,0,0,
-        0,144,142,1,0,0,0,145,146,5,25,0,0,146,147,5,3,0,0,147,160,5,25,
-        0,0,148,149,5,25,0,0,149,150,5,10,0,0,150,160,5,25,0,0,151,152,5,
-        21,0,0,152,153,5,25,0,0,153,154,5,3,0,0,154,160,5,25,0,0,155,156,
-        5,21,0,0,156,157,5,25,0,0,157,158,5,10,0,0,158,160,5,25,0,0,159,
-        145,1,0,0,0,159,148,1,0,0,0,159,151,1,0,0,0,159,155,1,0,0,0,160,
-        19,1,0,0,0,161,162,6,10,-1,0,162,168,5,25,0,0,163,164,5,14,0,0,164,
-        165,3,20,10,0,165,166,5,15,0,0,166,168,1,0,0,0,167,161,1,0,0,0,167,
-        163,1,0,0,0,168,183,1,0,0,0,169,170,10,5,0,0,170,171,5,4,0,0,171,
-        182,5,25,0,0,172,173,10,4,0,0,173,174,5,11,0,0,174,182,5,25,0,0,
-        175,176,10,3,0,0,176,177,5,12,0,0,177,182,5,25,0,0,178,179,10,2,
-        0,0,179,180,5,13,0,0,180,182,5,25,0,0,181,169,1,0,0,0,181,172,1,
-        0,0,0,181,175,1,0,0,0,181,178,1,0,0,0,182,185,1,0,0,0,183,181,1,
-        0,0,0,183,184,1,0,0,0,184,21,1,0,0,0,185,183,1,0,0,0,12,88,94,111,
-        114,121,128,135,142,159,167,181,183
+        4,1,27,199,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,1,0,1,0,
+        1,0,3,0,30,8,0,1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,1,
+        3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,
+        3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,
+        3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,
+        3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,1,3,3,3,101,8,3,1,4,1,4,5,4,105,8,
+        4,10,4,12,4,108,9,4,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,
+        1,6,5,6,122,8,6,10,6,12,6,125,9,6,3,6,127,8,6,1,7,1,7,1,7,1,7,1,
+        7,3,7,134,8,7,1,8,1,8,1,8,5,8,139,8,8,10,8,12,8,142,9,8,1,9,1,9,
+        1,9,1,9,3,9,148,8,9,1,10,1,10,1,10,5,10,153,8,10,10,10,12,10,156,
+        9,10,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,1,11,
+        1,11,1,11,3,11,172,8,11,1,12,1,12,1,12,1,12,1,12,1,12,3,12,180,8,
+        12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,5,
+        12,194,8,12,10,12,12,12,197,9,12,1,12,0,1,24,13,0,2,4,6,8,10,12,
+        14,16,18,20,22,24,0,0,208,0,29,1,0,0,0,2,31,1,0,0,0,4,34,1,0,0,0,
+        6,100,1,0,0,0,8,102,1,0,0,0,10,109,1,0,0,0,12,126,1,0,0,0,14,133,
+        1,0,0,0,16,135,1,0,0,0,18,147,1,0,0,0,20,149,1,0,0,0,22,171,1,0,
+        0,0,24,179,1,0,0,0,26,30,3,4,2,0,27,30,3,6,3,0,28,30,3,2,1,0,29,
+        26,1,0,0,0,29,27,1,0,0,0,29,28,1,0,0,0,30,1,1,0,0,0,31,32,5,25,0,
+        0,32,33,5,26,0,0,33,3,1,0,0,0,34,35,5,26,0,0,35,36,5,1,0,0,36,37,
+        3,6,3,0,37,5,1,0,0,0,38,39,5,16,0,0,39,40,3,12,6,0,40,41,5,17,0,
+        0,41,42,5,26,0,0,42,43,5,2,0,0,43,101,1,0,0,0,44,45,5,16,0,0,45,
+        46,3,12,6,0,46,47,5,17,0,0,47,48,5,26,0,0,48,49,5,18,0,0,49,50,5,
+        19,0,0,50,51,3,16,8,0,51,52,5,2,0,0,52,101,1,0,0,0,53,54,5,16,0,
+        0,54,55,3,12,6,0,55,56,5,17,0,0,56,57,5,26,0,0,57,58,5,20,0,0,58,
+        59,3,20,10,0,59,60,5,2,0,0,60,101,1,0,0,0,61,62,5,16,0,0,62,63,3,
+        12,6,0,63,64,5,17,0,0,64,65,5,26,0,0,65,66,5,20,0,0,66,67,3,20,10,
+        0,67,68,5,18,0,0,68,69,5,19,0,0,69,70,3,16,8,0,70,71,5,2,0,0,71,
+        101,1,0,0,0,72,73,5,16,0,0,73,74,3,12,6,0,74,75,5,17,0,0,75,76,5,
+        26,0,0,76,77,3,8,4,0,77,78,5,2,0,0,78,101,1,0,0,0,79,80,5,16,0,0,
+        80,81,3,12,6,0,81,82,5,17,0,0,82,83,5,26,0,0,83,84,3,8,4,0,84,85,
+        5,20,0,0,85,86,3,20,10,0,86,87,5,2,0,0,87,101,1,0,0,0,88,89,5,16,
+        0,0,89,90,3,12,6,0,90,91,5,17,0,0,91,92,5,26,0,0,92,93,3,8,4,0,93,
+        94,5,20,0,0,94,95,3,20,10,0,95,96,5,18,0,0,96,97,5,19,0,0,97,98,
+        3,16,8,0,98,99,5,2,0,0,99,101,1,0,0,0,100,38,1,0,0,0,100,44,1,0,
+        0,0,100,53,1,0,0,0,100,61,1,0,0,0,100,72,1,0,0,0,100,79,1,0,0,0,
+        100,88,1,0,0,0,101,7,1,0,0,0,102,106,3,10,5,0,103,105,3,10,5,0,104,
+        103,1,0,0,0,105,108,1,0,0,0,106,104,1,0,0,0,106,107,1,0,0,0,107,
+        9,1,0,0,0,108,106,1,0,0,0,109,110,5,22,0,0,110,111,5,23,0,0,111,
+        112,5,26,0,0,112,113,5,24,0,0,113,114,5,26,0,0,114,115,5,3,0,0,115,
+        116,5,26,0,0,116,11,1,0,0,0,117,127,5,4,0,0,118,123,3,14,7,0,119,
+        120,5,5,0,0,120,122,3,14,7,0,121,119,1,0,0,0,122,125,1,0,0,0,123,
+        121,1,0,0,0,123,124,1,0,0,0,124,127,1,0,0,0,125,123,1,0,0,0,126,
+        117,1,0,0,0,126,118,1,0,0,0,127,13,1,0,0,0,128,134,5,26,0,0,129,
+        130,3,24,12,0,130,131,5,6,0,0,131,132,5,26,0,0,132,134,1,0,0,0,133,
+        128,1,0,0,0,133,129,1,0,0,0,134,15,1,0,0,0,135,140,3,18,9,0,136,
+        137,5,5,0,0,137,139,3,18,9,0,138,136,1,0,0,0,139,142,1,0,0,0,140,
+        138,1,0,0,0,140,141,1,0,0,0,141,17,1,0,0,0,142,140,1,0,0,0,143,144,
+        5,26,0,0,144,148,5,7,0,0,145,146,5,26,0,0,146,148,5,8,0,0,147,143,
+        1,0,0,0,147,145,1,0,0,0,148,19,1,0,0,0,149,154,3,22,11,0,150,151,
+        5,9,0,0,151,153,3,22,11,0,152,150,1,0,0,0,153,156,1,0,0,0,154,152,
+        1,0,0,0,154,155,1,0,0,0,155,21,1,0,0,0,156,154,1,0,0,0,157,158,5,
+        26,0,0,158,159,5,3,0,0,159,172,5,26,0,0,160,161,5,26,0,0,161,162,
+        5,10,0,0,162,172,5,26,0,0,163,164,5,21,0,0,164,165,5,26,0,0,165,
+        166,5,3,0,0,166,172,5,26,0,0,167,168,5,21,0,0,168,169,5,26,0,0,169,
+        170,5,10,0,0,170,172,5,26,0,0,171,157,1,0,0,0,171,160,1,0,0,0,171,
+        163,1,0,0,0,171,167,1,0,0,0,172,23,1,0,0,0,173,174,6,12,-1,0,174,
+        180,5,26,0,0,175,176,5,14,0,0,176,177,3,24,12,0,177,178,5,15,0,0,
+        178,180,1,0,0,0,179,173,1,0,0,0,179,175,1,0,0,0,180,195,1,0,0,0,
+        181,182,10,5,0,0,182,183,5,4,0,0,183,194,5,26,0,0,184,185,10,4,0,
+        0,185,186,5,11,0,0,186,194,5,26,0,0,187,188,10,3,0,0,188,189,5,12,
+        0,0,189,194,5,26,0,0,190,191,10,2,0,0,191,192,5,13,0,0,192,194,5,
+        26,0,0,193,181,1,0,0,0,193,184,1,0,0,0,193,187,1,0,0,0,193,190,1,
+        0,0,0,194,197,1,0,0,0,195,193,1,0,0,0,195,196,1,0,0,0,196,25,1,0,
+        0,0,197,195,1,0,0,0,13,29,100,106,123,126,133,140,147,154,171,179,
+        193,195
     ]
 
 class lcParser ( Parser ):
@@ -87,30 +92,32 @@ class lcParser ( Parser ):
     literalNames = [ "<INVALID>", "':='", "';'", "'='", "'*'", "','", "'as'", 
                      "'asc'", "'desc'", "'and'", "'<'", "'+'", "'-'", "'/'", 
                      "'('", "')'", "'select'", "'from'", "'order'", "'by'", 
-                     "'where'", "'not'", "'inner'", "'join'", "'on'" ]
+                     "'where'", "'not'", "'inner'", "'join'", "'on'", "'plot'" ]
 
     symbolicNames = [ "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "SELECT", "FROM", "ORDER", "BY", "WHERE", "NOT", "INNER", 
-                      "JOIN", "ON", "ID", "Spaces" ]
+                      "JOIN", "ON", "PLOT", "ID", "Spaces" ]
 
-    RULE_assignation = 0
-    RULE_select = 1
-    RULE_innerJoinList = 2
-    RULE_innerJoin = 3
-    RULE_columnList = 4
-    RULE_column = 5
-    RULE_constraintList = 6
-    RULE_constraint = 7
-    RULE_conditionList = 8
-    RULE_condition = 9
-    RULE_expression = 10
+    RULE_root = 0
+    RULE_plot = 1
+    RULE_assignation = 2
+    RULE_select = 3
+    RULE_innerJoinList = 4
+    RULE_innerJoin = 5
+    RULE_columnList = 6
+    RULE_column = 7
+    RULE_constraintList = 8
+    RULE_constraint = 9
+    RULE_conditionList = 10
+    RULE_condition = 11
+    RULE_expression = 12
 
-    ruleNames =  [ "assignation", "select", "innerJoinList", "innerJoin", 
-                   "columnList", "column", "constraintList", "constraint", 
-                   "conditionList", "condition", "expression" ]
+    ruleNames =  [ "root", "plot", "assignation", "select", "innerJoinList", 
+                   "innerJoin", "columnList", "column", "constraintList", 
+                   "constraint", "conditionList", "condition", "expression" ]
 
     EOF = Token.EOF
     T__0=1
@@ -137,8 +144,9 @@ class lcParser ( Parser ):
     INNER=22
     JOIN=23
     ON=24
-    ID=25
-    Spaces=26
+    PLOT=25
+    ID=26
+    Spaces=27
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
@@ -147,6 +155,116 @@ class lcParser ( Parser ):
         self._predicates = None
 
 
+
+
+    class RootContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def assignation(self):
+            return self.getTypedRuleContext(lcParser.AssignationContext,0)
+
+
+        def select(self):
+            return self.getTypedRuleContext(lcParser.SelectContext,0)
+
+
+        def plot(self):
+            return self.getTypedRuleContext(lcParser.PlotContext,0)
+
+
+        def getRuleIndex(self):
+            return lcParser.RULE_root
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRoot" ):
+                return visitor.visitRoot(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def root(self):
+
+        localctx = lcParser.RootContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 0, self.RULE_root)
+        try:
+            self.state = 29
+            self._errHandler.sync(self)
+            token = self._input.LA(1)
+            if token in [26]:
+                self.enterOuterAlt(localctx, 1)
+                self.state = 26
+                self.assignation()
+                pass
+            elif token in [16]:
+                self.enterOuterAlt(localctx, 2)
+                self.state = 27
+                self.select()
+                pass
+            elif token in [25]:
+                self.enterOuterAlt(localctx, 3)
+                self.state = 28
+                self.plot()
+                pass
+            else:
+                raise NoViableAltException(self)
+
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
+
+
+    class PlotContext(ParserRuleContext):
+        __slots__ = 'parser'
+
+        def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
+            super().__init__(parent, invokingState)
+            self.parser = parser
+
+        def PLOT(self):
+            return self.getToken(lcParser.PLOT, 0)
+
+        def ID(self):
+            return self.getToken(lcParser.ID, 0)
+
+        def getRuleIndex(self):
+            return lcParser.RULE_plot
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitPlot" ):
+                return visitor.visitPlot(self)
+            else:
+                return visitor.visitChildren(self)
+
+
+
+
+    def plot(self):
+
+        localctx = lcParser.PlotContext(self, self._ctx, self.state)
+        self.enterRule(localctx, 2, self.RULE_plot)
+        try:
+            self.enterOuterAlt(localctx, 1)
+            self.state = 31
+            self.match(lcParser.PLOT)
+            self.state = 32
+            self.match(lcParser.ID)
+        except RecognitionException as re:
+            localctx.exception = re
+            self._errHandler.reportError(self, re)
+            self._errHandler.recover(self, re)
+        finally:
+            self.exitRule()
+        return localctx
 
 
     class AssignationContext(ParserRuleContext):
@@ -178,14 +296,14 @@ class lcParser ( Parser ):
     def assignation(self):
 
         localctx = lcParser.AssignationContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 0, self.RULE_assignation)
+        self.enterRule(localctx, 4, self.RULE_assignation)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 22
+            self.state = 34
             self.match(lcParser.ID)
-            self.state = 23
+            self.state = 35
             self.match(lcParser.T__0)
-            self.state = 24
+            self.state = 36
             self.select()
         except RecognitionException as re:
             localctx.exception = re
@@ -252,146 +370,146 @@ class lcParser ( Parser ):
     def select(self):
 
         localctx = lcParser.SelectContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 2, self.RULE_select)
+        self.enterRule(localctx, 6, self.RULE_select)
         try:
-            self.state = 88
+            self.state = 100
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,0,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,1,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 26
+                self.state = 38
                 self.match(lcParser.SELECT)
-                self.state = 27
+                self.state = 39
                 self.columnList()
-                self.state = 28
+                self.state = 40
                 self.match(lcParser.FROM)
-                self.state = 29
+                self.state = 41
                 self.match(lcParser.ID)
-                self.state = 30
+                self.state = 42
                 self.match(lcParser.T__1)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 32
+                self.state = 44
                 self.match(lcParser.SELECT)
-                self.state = 33
+                self.state = 45
                 self.columnList()
-                self.state = 34
+                self.state = 46
                 self.match(lcParser.FROM)
-                self.state = 35
+                self.state = 47
                 self.match(lcParser.ID)
-                self.state = 36
+                self.state = 48
                 self.match(lcParser.ORDER)
-                self.state = 37
+                self.state = 49
                 self.match(lcParser.BY)
-                self.state = 38
+                self.state = 50
                 self.constraintList()
-                self.state = 39
+                self.state = 51
                 self.match(lcParser.T__1)
                 pass
 
             elif la_ == 3:
                 self.enterOuterAlt(localctx, 3)
-                self.state = 41
+                self.state = 53
                 self.match(lcParser.SELECT)
-                self.state = 42
+                self.state = 54
                 self.columnList()
-                self.state = 43
+                self.state = 55
                 self.match(lcParser.FROM)
-                self.state = 44
+                self.state = 56
                 self.match(lcParser.ID)
-                self.state = 45
+                self.state = 57
                 self.match(lcParser.WHERE)
-                self.state = 46
+                self.state = 58
                 self.conditionList()
-                self.state = 47
+                self.state = 59
                 self.match(lcParser.T__1)
                 pass
 
             elif la_ == 4:
                 self.enterOuterAlt(localctx, 4)
-                self.state = 49
+                self.state = 61
                 self.match(lcParser.SELECT)
-                self.state = 50
+                self.state = 62
                 self.columnList()
-                self.state = 51
+                self.state = 63
                 self.match(lcParser.FROM)
-                self.state = 52
+                self.state = 64
                 self.match(lcParser.ID)
-                self.state = 53
+                self.state = 65
                 self.match(lcParser.WHERE)
-                self.state = 54
+                self.state = 66
                 self.conditionList()
-                self.state = 55
+                self.state = 67
                 self.match(lcParser.ORDER)
-                self.state = 56
+                self.state = 68
                 self.match(lcParser.BY)
-                self.state = 57
+                self.state = 69
                 self.constraintList()
-                self.state = 58
+                self.state = 70
                 self.match(lcParser.T__1)
                 pass
 
             elif la_ == 5:
                 self.enterOuterAlt(localctx, 5)
-                self.state = 60
+                self.state = 72
                 self.match(lcParser.SELECT)
-                self.state = 61
+                self.state = 73
                 self.columnList()
-                self.state = 62
+                self.state = 74
                 self.match(lcParser.FROM)
-                self.state = 63
+                self.state = 75
                 self.match(lcParser.ID)
-                self.state = 64
+                self.state = 76
                 self.innerJoinList()
-                self.state = 65
+                self.state = 77
                 self.match(lcParser.T__1)
                 pass
 
             elif la_ == 6:
                 self.enterOuterAlt(localctx, 6)
-                self.state = 67
+                self.state = 79
                 self.match(lcParser.SELECT)
-                self.state = 68
+                self.state = 80
                 self.columnList()
-                self.state = 69
+                self.state = 81
                 self.match(lcParser.FROM)
-                self.state = 70
+                self.state = 82
                 self.match(lcParser.ID)
-                self.state = 71
+                self.state = 83
                 self.innerJoinList()
-                self.state = 72
+                self.state = 84
                 self.match(lcParser.WHERE)
-                self.state = 73
+                self.state = 85
                 self.conditionList()
-                self.state = 74
+                self.state = 86
                 self.match(lcParser.T__1)
                 pass
 
             elif la_ == 7:
                 self.enterOuterAlt(localctx, 7)
-                self.state = 76
+                self.state = 88
                 self.match(lcParser.SELECT)
-                self.state = 77
+                self.state = 89
                 self.columnList()
-                self.state = 78
+                self.state = 90
                 self.match(lcParser.FROM)
-                self.state = 79
+                self.state = 91
                 self.match(lcParser.ID)
-                self.state = 80
+                self.state = 92
                 self.innerJoinList()
-                self.state = 81
+                self.state = 93
                 self.match(lcParser.WHERE)
-                self.state = 82
+                self.state = 94
                 self.conditionList()
-                self.state = 83
+                self.state = 95
                 self.match(lcParser.ORDER)
-                self.state = 84
+                self.state = 96
                 self.match(lcParser.BY)
-                self.state = 85
+                self.state = 97
                 self.constraintList()
-                self.state = 86
+                self.state = 98
                 self.match(lcParser.T__1)
                 pass
 
@@ -434,19 +552,19 @@ class lcParser ( Parser ):
     def innerJoinList(self):
 
         localctx = lcParser.InnerJoinListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 4, self.RULE_innerJoinList)
+        self.enterRule(localctx, 8, self.RULE_innerJoinList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 90
+            self.state = 102
             self.innerJoin()
-            self.state = 94
+            self.state = 106
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==22:
-                self.state = 91
+                self.state = 103
                 self.innerJoin()
-                self.state = 96
+                self.state = 108
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -496,22 +614,22 @@ class lcParser ( Parser ):
     def innerJoin(self):
 
         localctx = lcParser.InnerJoinContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 6, self.RULE_innerJoin)
+        self.enterRule(localctx, 10, self.RULE_innerJoin)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 97
+            self.state = 109
             self.match(lcParser.INNER)
-            self.state = 98
+            self.state = 110
             self.match(lcParser.JOIN)
-            self.state = 99
+            self.state = 111
             self.match(lcParser.ID)
-            self.state = 100
+            self.state = 112
             self.match(lcParser.ON)
-            self.state = 101
+            self.state = 113
             self.match(lcParser.ID)
-            self.state = 102
+            self.state = 114
             self.match(lcParser.T__2)
-            self.state = 103
+            self.state = 115
             self.match(lcParser.ID)
         except RecognitionException as re:
             localctx.exception = re
@@ -551,30 +669,30 @@ class lcParser ( Parser ):
     def columnList(self):
 
         localctx = lcParser.ColumnListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 8, self.RULE_columnList)
+        self.enterRule(localctx, 12, self.RULE_columnList)
         self._la = 0 # Token type
         try:
-            self.state = 114
+            self.state = 126
             self._errHandler.sync(self)
             token = self._input.LA(1)
             if token in [4]:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 105
+                self.state = 117
                 self.match(lcParser.T__3)
                 pass
-            elif token in [14, 25]:
+            elif token in [14, 26]:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 106
+                self.state = 118
                 self.column()
-                self.state = 111
+                self.state = 123
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
                 while _la==5:
-                    self.state = 107
+                    self.state = 119
                     self.match(lcParser.T__4)
-                    self.state = 108
+                    self.state = 120
                     self.column()
-                    self.state = 113
+                    self.state = 125
                     self._errHandler.sync(self)
                     _la = self._input.LA(1)
 
@@ -620,24 +738,24 @@ class lcParser ( Parser ):
     def column(self):
 
         localctx = lcParser.ColumnContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 10, self.RULE_column)
+        self.enterRule(localctx, 14, self.RULE_column)
         try:
-            self.state = 121
+            self.state = 133
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,4,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 116
+                self.state = 128
                 self.match(lcParser.ID)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 117
+                self.state = 129
                 self.expression(0)
-                self.state = 118
+                self.state = 130
                 self.match(lcParser.T__5)
-                self.state = 119
+                self.state = 131
                 self.match(lcParser.ID)
                 pass
 
@@ -680,21 +798,21 @@ class lcParser ( Parser ):
     def constraintList(self):
 
         localctx = lcParser.ConstraintListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 12, self.RULE_constraintList)
+        self.enterRule(localctx, 16, self.RULE_constraintList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 123
+            self.state = 135
             self.constraint()
-            self.state = 128
+            self.state = 140
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==5:
-                self.state = 124
+                self.state = 136
                 self.match(lcParser.T__4)
-                self.state = 125
+                self.state = 137
                 self.constraint()
-                self.state = 130
+                self.state = 142
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -732,24 +850,24 @@ class lcParser ( Parser ):
     def constraint(self):
 
         localctx = lcParser.ConstraintContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 14, self.RULE_constraint)
+        self.enterRule(localctx, 18, self.RULE_constraint)
         try:
-            self.state = 135
+            self.state = 147
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 131
+                self.state = 143
                 self.match(lcParser.ID)
-                self.state = 132
+                self.state = 144
                 self.match(lcParser.T__6)
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 133
+                self.state = 145
                 self.match(lcParser.ID)
-                self.state = 134
+                self.state = 146
                 self.match(lcParser.T__7)
                 pass
 
@@ -792,21 +910,21 @@ class lcParser ( Parser ):
     def conditionList(self):
 
         localctx = lcParser.ConditionListContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 16, self.RULE_conditionList)
+        self.enterRule(localctx, 20, self.RULE_conditionList)
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 137
+            self.state = 149
             self.condition()
-            self.state = 142
+            self.state = 154
             self._errHandler.sync(self)
             _la = self._input.LA(1)
             while _la==9:
-                self.state = 138
+                self.state = 150
                 self.match(lcParser.T__8)
-                self.state = 139
+                self.state = 151
                 self.condition()
-                self.state = 144
+                self.state = 156
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -920,56 +1038,56 @@ class lcParser ( Parser ):
     def condition(self):
 
         localctx = lcParser.ConditionContext(self, self._ctx, self.state)
-        self.enterRule(localctx, 18, self.RULE_condition)
+        self.enterRule(localctx, 22, self.RULE_condition)
         try:
-            self.state = 159
+            self.state = 171
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,8,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,9,self._ctx)
             if la_ == 1:
                 localctx = lcParser.EqualsContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 145
+                self.state = 157
                 self.match(lcParser.ID)
-                self.state = 146
+                self.state = 158
                 self.match(lcParser.T__2)
-                self.state = 147
+                self.state = 159
                 self.match(lcParser.ID)
                 pass
 
             elif la_ == 2:
                 localctx = lcParser.MinorContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 148
+                self.state = 160
                 self.match(lcParser.ID)
-                self.state = 149
+                self.state = 161
                 self.match(lcParser.T__9)
-                self.state = 150
+                self.state = 162
                 self.match(lcParser.ID)
                 pass
 
             elif la_ == 3:
                 localctx = lcParser.NotEqualsContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 151
+                self.state = 163
                 self.match(lcParser.NOT)
-                self.state = 152
+                self.state = 164
                 self.match(lcParser.ID)
-                self.state = 153
+                self.state = 165
                 self.match(lcParser.T__2)
-                self.state = 154
+                self.state = 166
                 self.match(lcParser.ID)
                 pass
 
             elif la_ == 4:
                 localctx = lcParser.NotMinorContext(self, localctx)
                 self.enterOuterAlt(localctx, 4)
-                self.state = 155
+                self.state = 167
                 self.match(lcParser.NOT)
-                self.state = 156
+                self.state = 168
                 self.match(lcParser.ID)
-                self.state = 157
+                self.state = 169
                 self.match(lcParser.T__9)
-                self.state = 158
+                self.state = 170
                 self.match(lcParser.ID)
                 pass
 
@@ -1114,103 +1232,103 @@ class lcParser ( Parser ):
         _parentState = self.state
         localctx = lcParser.ExpressionContext(self, self._ctx, _parentState)
         _prevctx = localctx
-        _startState = 20
-        self.enterRecursionRule(localctx, 20, self.RULE_expression, _p)
+        _startState = 24
+        self.enterRecursionRule(localctx, 24, self.RULE_expression, _p)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 167
+            self.state = 179
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [25]:
+            if token in [26]:
                 localctx = lcParser.IdentifierContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 162
+                self.state = 174
                 self.match(lcParser.ID)
                 pass
             elif token in [14]:
                 localctx = lcParser.PharContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 163
+                self.state = 175
                 self.match(lcParser.T__13)
-                self.state = 164
+                self.state = 176
                 self.expression(0)
-                self.state = 165
+                self.state = 177
                 self.match(lcParser.T__14)
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 183
+            self.state = 195
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
                         self.triggerExitRuleEvent()
                     _prevctx = localctx
-                    self.state = 181
+                    self.state = 193
                     self._errHandler.sync(self)
-                    la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
+                    la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
                     if la_ == 1:
                         localctx = lcParser.MultContext(self, lcParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 169
+                        self.state = 181
                         if not self.precpred(self._ctx, 5):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 5)")
-                        self.state = 170
+                        self.state = 182
                         self.match(lcParser.T__3)
-                        self.state = 171
+                        self.state = 183
                         self.match(lcParser.ID)
                         pass
 
                     elif la_ == 2:
                         localctx = lcParser.SumContext(self, lcParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 172
+                        self.state = 184
                         if not self.precpred(self._ctx, 4):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 4)")
-                        self.state = 173
+                        self.state = 185
                         self.match(lcParser.T__10)
-                        self.state = 174
+                        self.state = 186
                         self.match(lcParser.ID)
                         pass
 
                     elif la_ == 3:
                         localctx = lcParser.SubstContext(self, lcParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 175
+                        self.state = 187
                         if not self.precpred(self._ctx, 3):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
-                        self.state = 176
+                        self.state = 188
                         self.match(lcParser.T__11)
-                        self.state = 177
+                        self.state = 189
                         self.match(lcParser.ID)
                         pass
 
                     elif la_ == 4:
                         localctx = lcParser.DivContext(self, lcParser.ExpressionContext(self, _parentctx, _parentState))
                         self.pushNewRecursionContext(localctx, _startState, self.RULE_expression)
-                        self.state = 178
+                        self.state = 190
                         if not self.precpred(self._ctx, 2):
                             from antlr4.error.Errors import FailedPredicateException
                             raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                        self.state = 179
+                        self.state = 191
                         self.match(lcParser.T__12)
-                        self.state = 180
+                        self.state = 192
                         self.match(lcParser.ID)
                         pass
 
              
-                self.state = 185
+                self.state = 197
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,11,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1225,7 +1343,7 @@ class lcParser ( Parser ):
     def sempred(self, localctx:RuleContext, ruleIndex:int, predIndex:int):
         if self._predicates == None:
             self._predicates = dict()
-        self._predicates[10] = self.expression_sempred
+        self._predicates[12] = self.expression_sempred
         pred = self._predicates.get(ruleIndex, None)
         if pred is None:
             raise Exception("No predicate with index:" + str(ruleIndex))

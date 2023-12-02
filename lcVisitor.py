@@ -9,6 +9,16 @@ else:
 
 class lcVisitor(ParseTreeVisitor):
 
+    # Visit a parse tree produced by lcParser#root.
+    def visitRoot(self, ctx:lcParser.RootContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#plot.
+    def visitPlot(self, ctx:lcParser.PlotContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by lcParser#assignation.
     def visitAssignation(self, ctx:lcParser.AssignationContext):
         return self.visitChildren(ctx)

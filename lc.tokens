@@ -22,8 +22,9 @@ NOT=21
 INNER=22
 JOIN=23
 ON=24
-ID=25
-Spaces=26
+PLOT=25
+ID=26
+Spaces=27
 ':='=1
 ';'=2
 '='=3
@@ -48,3 +49,4 @@ Spaces=26
 'inner'=22
 'join'=23
 'on'=24
+'plot'=25

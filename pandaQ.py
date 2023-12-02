@@ -4,6 +4,7 @@ from lcParser import lcParser
 from lcVisitor import lcVisitor
 import streamlit as st
 import pandas as pd
+import matplotlib.pyplot as plt
 
 '''
 example:
@@ -15,11 +16,11 @@ inner join jobs on job_id = job_id where job_title = Programmer order by first_n
 
 #TODO
 ####################################################
+# Control de errors
 # revisar visit Minor, not Minot, not Equal
 # Només hi ha implementada la multiplicacio
 # Canviar nom constraintList?
 # Num a gramatica
-# Acabar implementacio INNER JOIN
 # ReadME.md
 ####################################################
 
@@ -31,22 +32,51 @@ class EvalVisitor(lcVisitor):
     def __init__(self):
         self.dataFrame = None
 
+    def visitRoot(self, ctx):
+
+        if isinstance(ctx.assignation(), lcParser.AssignationContext):
+            return self.visitAssignation(ctx.assignation())
+        
+        elif isinstance(ctx.select(), lcParser.SelectContext):
+            return self.visitSelect(ctx.select())
+        
+        elif isinstance(ctx.plot(), lcParser.PlotContext):
+            return self.visitPlot(ctx.plot())
+
+    def visitPlot(self, ctx):
+        tableName = ctx.ID().getText()
+        if 'asignations' in st.session_state:
+            if tableName in st.session_state.asignations:
+
+                dataFrame = st.session_state.asignations[tableName]
+
+                numeric_columns = dataFrame.select_dtypes(include='number')
+                fig, ax = plt.subplots()
+                numeric_columns.plot(ax=ax, kind='line')
+                st.pyplot(fig)
+
+            #else Error no hi ha "tableName" definit
+        #else Error no hi ha asignacions fetes
+
     def visitAssignation(self, ctx):
-        print("enters")
+        result = self.visit(ctx.select())
         if 'asignations' not in st.session_state:
             st.session_state.asignations = {}
-        st.session_state.asignation[ctx.ID().getText()] = self.visit(ctx.select())
+        st.session_state.asignations[ctx.ID().getText()] = result 
+        return result
+
     
     def visitSelect(self, ctx):
         
         tableName = ctx.ID().getText()
-        if not 'asignations' in st.session_state:        
+        if 'asignations' in st.session_state:        
             if tableName in st.session_state.asignations:
                 self.dataFrame = st.session_state.asignations[tableName]
             else: self.dataFrame = pd.read_csv(dataPath + ctx.ID().getText() + ".csv")
         else: self.dataFrame = pd.read_csv(dataPath + ctx.ID().getText() + ".csv")
 
         columns = self.visit(ctx.columnList())
+        print(columns)
 
         if ctx.innerJoinList():
             self.visit(ctx.innerJoinList())
@@ -108,7 +138,8 @@ class EvalVisitor(lcVisitor):
         return constraintIDs, constraintOrders
 
     def visitColumnList(self, ctx):
-            
+        
+        if ctx.getChild(0).getText() == '*': return self.dataFrame.columns
         columns = []
         for col in ctx.column():
             columns.append(self.visit(col))
@@ -145,7 +176,7 @@ def execute_query(query):
     token_stream = CommonTokenStream(lexer)
     parser = lcParser(token_stream)
 
-    tree = parser.select()
+    tree = parser.root()
 
     eval_visitor = EvalVisitor()
     result = eval_visitor.visit(tree)

@@ -9,7 +9,12 @@ NOT: 'not';
 INNER: 'inner';
 JOIN: 'join';
 ON: 'on';
+PLOT: 'plot';
 ID: [a-zA-Z0-9_.]+;
+
+root: assignation | select | plot;
+
+plot: PLOT ID;
 
 assignation: ID ':=' select ;
 
