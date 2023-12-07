@@ -49,41 +49,6 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by lcParser#constraintList.
-    def visitConstraintList(self, ctx:lcParser.ConstraintListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#constraint.
-    def visitConstraint(self, ctx:lcParser.ConstraintContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#conditionList.
-    def visitConditionList(self, ctx:lcParser.ConditionListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#Equals.
-    def visitEquals(self, ctx:lcParser.EqualsContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#Minor.
-    def visitMinor(self, ctx:lcParser.MinorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#NotEquals.
-    def visitNotEquals(self, ctx:lcParser.NotEqualsContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#NotMinor.
-    def visitNotMinor(self, ctx:lcParser.NotMinorContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by lcParser#Div.
     def visitDiv(self, ctx:lcParser.DivContext):
         return self.visitChildren(ctx)
@@ -109,8 +74,38 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by lcParser#Phar.
-    def visitPhar(self, ctx:lcParser.PharContext):
+    # Visit a parse tree produced by lcParser#orderingList.
+    def visitOrderingList(self, ctx:lcParser.OrderingListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#order.
+    def visitOrder(self, ctx:lcParser.OrderContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#conditionList.
+    def visitConditionList(self, ctx:lcParser.ConditionListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Equals.
+    def visitEquals(self, ctx:lcParser.EqualsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#Minor.
+    def visitMinor(self, ctx:lcParser.MinorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#NotEquals.
+    def visitNotEquals(self, ctx:lcParser.NotEqualsContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#NotMinor.
+    def visitNotMinor(self, ctx:lcParser.NotMinorContext):
         return self.visitChildren(ctx)
 
 

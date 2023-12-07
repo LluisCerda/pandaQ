@@ -14,17 +14,19 @@ from employees inner join departments on department_id = department_id
 inner join jobs on job_id = job_id where job_title = Programmer order by first_name asc;
 '''
 
-#TODO
 ####################################################
-# Control de errors
-# revisar visit Minor, not Minot, not Equal
-# Només hi ha implementada la multiplicacio
-# Canviar nom constraintList?
-# Num a gramatica
+#TODO
 # ReadME.md
+
+#Known bugs -> ID1 as ID2 will create a new column ID2 with ID1 in each file
+
+#Control de errors
+
+#Possibilitats a afegir
+# - Inner Join funcional amb taules guardades
+# - Operacions amb més d'una operacio i parèntesi
 ####################################################
 
-dataPath = 'data/'
 asignations = {}
 
 class EvalVisitor(lcVisitor):
@@ -42,6 +44,10 @@ class EvalVisitor(lcVisitor):
         
         elif isinstance(ctx.plot(), lcParser.PlotContext):
             return self.visitPlot(ctx.plot())
+        
+        else: 
+            st.error("Error! Expresion no soportada.")
+            return None
 
     def visitPlot(self, ctx):
         tableName = ctx.ID().getText()
@@ -55,8 +61,8 @@ class EvalVisitor(lcVisitor):
                 numeric_columns.plot(ax=ax, kind='line')
                 st.pyplot(fig)
 
-            #else Error no hi ha "tableName" definit
-        #else Error no hi ha asignacions fetes
+            else: st.error(f"Error! {tableName} no esta definido.") 
+        else: st.error("Error! No hay asignaciones echas.")
 
     def visitAssignation(self, ctx):
         result = self.visit(ctx.select())
@@ -69,29 +75,46 @@ class EvalVisitor(lcVisitor):
     def visitSelect(self, ctx):
         
         tableName = ctx.ID().getText()
-        if 'asignations' in st.session_state:        
-            if tableName in st.session_state.asignations:
-                self.dataFrame = st.session_state.asignations[tableName]
-            else: self.dataFrame = pd.read_csv(dataPath + ctx.ID().getText() + ".csv")
-        else: self.dataFrame = pd.read_csv(dataPath + ctx.ID().getText() + ".csv")
+        
+        if 'asignations' in st.session_state and tableName in st.session_state.asignations:        
+            self.dataFrame = st.session_state.asignations[tableName]
+        else: 
+            try:
+                self.dataFrame = pd.read_csv('data/' + ctx.ID().getText() + ".csv")
+            except:
+                st.error(f"Error! {tableName} no existe.") 
+                return None
 
-        columns = self.visit(ctx.columnList())
-        print(columns)
-
+        #INNER JOIN
         if ctx.innerJoinList():
-            self.visit(ctx.innerJoinList())
+            try: self.visit(ctx.innerJoinList())
+            except:
+                st.error("Error! Misspelled or non existent inner join ID")
+                return None
 
-        if ctx.conditionList():
-            conditionStr = self.visit(ctx.conditionList())
-            print(conditionStr)
-            print(self.dataFrame)
-            self.dataFrame = self.dataFrame.query(conditionStr)
+        #WHERE
+        if ctx.conditionList(): 
+            try: self.visit(ctx.conditionList())
+            except:
+                st.error("Error! Misspelled or non existent condition ID")
+                return None
+        
+        #ORDER BY
+        if ctx.orderingList(): 
+            try: self.visit(ctx.orderingList())
+            except:
+                st.error("Error! Misspelled or non existent ordering ID")
+                return None
 
-        if ctx.constraintList():
-            constraintsIDs, constraintOrders = self.visit(ctx.constraintList())
-            self.dataFrame = self.dataFrame.sort_values(by=constraintsIDs, ascending=constraintOrders)
+        #SELECT COLUMNS
+        columns = self.visit(ctx.columnList())
 
-        return self.dataFrame[columns]
+        try: self.dataFrame = self.dataFrame[columns]
+        except: 
+            st.error(f"Error! ID de columna no existente en {tableName}.") 
+            return None
+
+        return self.dataFrame
     
     def visitInnerJoinList(self, ctx):
 
@@ -99,8 +122,8 @@ class EvalVisitor(lcVisitor):
 
             table = innerJoin.getChild(2).getText()
             onId = innerJoin.getChild(4).getText()
-
-            newDataFrame = pd.read_csv(dataPath + table + ".csv")
+            
+            newDataFrame = pd.read_csv('data/' + table + ".csv")
             self.dataFrame = self.dataFrame.merge(newDataFrame, on=onId, how='inner')
     
     def visitConditionList(self, ctx):
@@ -109,33 +132,43 @@ class EvalVisitor(lcVisitor):
             conditionList.append(self.visit(condition))
         
         conditionStr = " and ".join(conditionList)
-        return conditionStr
 
+        self.dataFrame = self.dataFrame.query(conditionStr)
+
+        
     def visitEquals(self, ctx):
         if not isNumber(ctx.getChild(2).getText()):
             return ctx.getChild(0).getText() + " == " + "'" + ctx.getChild(2).getText() + "'"
         else: return ctx.getChild(0).getText() + " == " + ctx.getChild(2).getText() 
     
     def visitMinor(self, ctx):
+        if not isNumber(ctx.getChild(2).getText()):
+            return ctx.getChild(0).getText() + " < " + "'" + ctx.getChild(2).getText() + "'"
         return ctx.getChild(0).getText() + " < " + ctx.getChild(2).getText()
     
     def visitNotEquals(self, ctx):
+        if not isNumber(ctx.getChild(3).getText()):
+            return "not " + ctx.getChild(1).getText() + " == " + "'" + ctx.getChild(3).getText() + "'"
         return "not " + ctx.getChild(1).getText() + " == " + ctx.getChild(3).getText()
     
     def visitNotMinor(self, ctx):
+        if not isNumber(ctx.getChild(3).getText()):
+            return "not " + ctx.getChild(1).getText() + " < " + "'" + ctx.getChild(3).getText() + "'"
         return "not " + ctx.getChild(1).getText() + " < " + ctx.getChild(3).getText()
 
-    def visitConstraintList(self, ctx):
-        constraintIDs = []
-        constraintOrders = []
-        for constraint in ctx.constraint():
-            id = constraint.ID().getText()
-            order = constraint.getChild(1).getText()
+    def visitOrderingList(self, ctx):
+        orderIDs = []
+        orders = []
+        for order in ctx.order():
 
-            constraintIDs.append(id)
-            constraintOrders.append(order == "asc")
+            id = order.ID().getText()
+            order = order.getChild(1).getText()
+
+            orderIDs.append(id)
+            orders.append(order == "asc")
         
-        return constraintIDs, constraintOrders
+        self.dataFrame = self.dataFrame.sort_values(by=orderIDs, ascending=orders)
+
 
     def visitColumnList(self, ctx):
         
@@ -143,21 +176,33 @@ class EvalVisitor(lcVisitor):
         columns = []
         for col in ctx.column():
             columns.append(self.visit(col))
-
         return columns
 
     def visitColumn(self, ctx):
+
         if ctx.getChildCount() == 1:
             return ctx.ID().getText()
-        else:
-            newColumnName = ctx.getChild(2).getText()
-            newColumn = self.visit(ctx.getChild(0))
-            self.dataFrame[newColumnName] = newColumn
-            return newColumnName
+        
+        newColumnName = ctx.getChild(2).getText()
+        newColumn = self.visit(ctx.getChild(0))
+        self.dataFrame[newColumnName] = newColumn
+        return newColumnName
 
-    def visitMult(self, ctx):
+    def visitMult(self, ctx):    
         oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
         return oldColumn * float(ctx.getChild(2).getText())
+    
+    def visitSum(self, ctx):    
+        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
+        return oldColumn + float(ctx.getChild(2).getText())
+    
+    def visitSubst(self, ctx):    
+        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
+        return oldColumn - float(ctx.getChild(2).getText())
+    
+    def visitDiv(self, ctx):    
+        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
+        return oldColumn / float(ctx.getChild(2).getText())
     
     def visitIdentifier(self, ctx):
         return ctx.ID().getText()
@@ -171,15 +216,19 @@ def isNumber(s):
 
 def execute_query(query):
     
-    input_stream = InputStream(query)
-    lexer = lcLexer(input_stream)
-    token_stream = CommonTokenStream(lexer)
-    parser = lcParser(token_stream)
+    try:
+        input_stream = InputStream(query)
+        lexer = lcLexer(input_stream)
+        token_stream = CommonTokenStream(lexer)
+        parser = lcParser(token_stream)
 
-    tree = parser.root()
+        tree = parser.root()
 
-    eval_visitor = EvalVisitor()
-    result = eval_visitor.visit(tree)
+        eval_visitor = EvalVisitor()
+        result = eval_visitor.visit(tree)
+    except: 
+        st.error("Error parsing your entry, check for possible errors and misspelled IDs.")
+        return None
 
     return result
 
@@ -192,11 +241,12 @@ def main():
         
         if query_input:
             result_df = execute_query(query_input)
-            
-            st.write("Resultados de la Consulta:")
-            st.dataframe(result_df)
+
+            if result_df is not None:
+                st.write("Resultados de la Consulta:")
+                st.dataframe(result_df)
         else:
-            st.warning("Por favor, ingrese una consulta antes de enviar.")
+            st.warning("Error! Ingrese una consulta antes de enviar.")
 
 if __name__ == "__main__":
     main()

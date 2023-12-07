@@ -1,30 +1,12 @@
 grammar lc;
 
-SELECT: 'select';
-FROM: 'from';
-ORDER: 'order';
-BY: 'by';
-WHERE: 'where';
-NOT: 'not';
-INNER: 'inner';
-JOIN: 'join';
-ON: 'on';
-PLOT: 'plot';
-ID: [a-zA-Z0-9_.]+;
-
 root: assignation | select | plot;
 
 plot: PLOT ID;
 
 assignation: ID ':=' select ;
 
-select: SELECT columnList FROM ID ';'
- | SELECT columnList FROM ID ORDER BY constraintList ';'
- | SELECT columnList FROM ID WHERE conditionList ';'
- | SELECT columnList FROM ID WHERE conditionList ORDER BY constraintList ';'
- | SELECT columnList FROM ID innerJoinList ';'
- | SELECT columnList FROM ID innerJoinList WHERE conditionList ';'
- | SELECT columnList FROM ID innerJoinList WHERE conditionList ORDER BY constraintList ';'
+select: SELECT columnList FROM ID (innerJoinList)? (WHERE conditionList)? (ORDER BY orderingList)? ';'
 ;
 
 innerJoinList: innerJoin (innerJoin)*;
@@ -35,8 +17,15 @@ column: ID
     | expression 'as' ID
  ;
 
-constraintList: constraint (',' constraint)*;
-constraint: ID 'asc'
+ expression: ID #Identifier
+          | expression '*' NUM        # Mult
+          | expression '+' NUM       # Sum
+          | expression '-' NUM        # Subst
+          | expression '/' NUM        # Div
+;
+
+orderingList: order (',' order)*;
+order: ID 'asc'
  | ID 'desc'
  ;
 
@@ -47,13 +36,18 @@ condition: ID '=' ID               #Equals
  | NOT ID '<' ID                     #NotMinor
  ;
 
-expression: ID #Identifier
-          | expression '*' ID        # Mult
-          | expression '+' ID       # Sum
-          | expression '-' ID        # Subst
-          | expression '/' ID        # Div
-          | '(' expression ')'         # Phar
-;
-
 Spaces: [ \t\r\n] -> skip;
+SELECT: 'select';
+FROM: 'from';
+ORDER: 'order';
+BY: 'by';
+WHERE: 'where';
+NOT: 'not';
+INNER: 'inner';
+JOIN: 'join';
+ON: 'on';
+PLOT: 'plot';
+ID: [a-zA-Z0-9_]+;
+NUM: DIGIT+ ('.' DIGIT+)?;
+DIGIT: '0'..'9';
 
