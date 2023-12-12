@@ -1,6 +1,5 @@
 # pandaQ
 
-Implementació d'un petit intèrpret SQL anomenat PandaQ.
 Implementation of a small SQL interpreter called PandaQ.
 
 ## Instal·lació
