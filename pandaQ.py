@@ -5,31 +5,32 @@ from lcVisitor import lcVisitor
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+from antlr4.error.ErrorListener import ErrorListener
 
-'''
-example:
-
-select first_name, last_name, job_title, department_name 
-from employees inner join departments on department_id = department_id 
-inner join jobs on job_id = job_id where job_title = Programmer order by first_name asc;
-'''
+asignations = {}
 
 ####################################################
 #TODO
-# ReadME.md
-
-#Known bugs -> ID1 as ID2 will create a new column ID2 with ID1 in each file
-
-#Control de errors
-
-#Possibilitats a afegir
-# - Inner Join funcional amb taules guardades
-# - Operacions amb més d'una operacio i parèntesi
-# - Fer asc com a default en cas de que no hi hagi ordre
-# - Testing amb tots els casos de l'enunciat
+# Format pep8
 ####################################################
 
-asignations = {}
+#Parser custom error Listener
+class MyErrorListener( ErrorListener ):
+
+    def __init__(self):
+        super(MyErrorListener, self).__init__()
+
+    def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
+        raise Exception(f"Syntax Error: {msg}")
+
+    def reportAmbiguity(self, recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs):
+        raise Exception()
+
+    def reportAttemptingFullContext(self, recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs):
+        raise Exception()
+
+    def reportContextSensitivity(self, recognizer, dfa, startIndex, stopIndex, prediction, configs):
+        raise Exception()
 
 class EvalVisitor(lcVisitor):
 
@@ -78,6 +79,7 @@ class EvalVisitor(lcVisitor):
         
         tableName = ctx.ID().getText()
         
+        #FROM
         if 'asignations' in st.session_state and tableName in st.session_state.asignations:        
             self.dataFrame = st.session_state.asignations[tableName]
         else: 
@@ -112,7 +114,7 @@ class EvalVisitor(lcVisitor):
                 st.error("Error! Misspelled or non existent ordering ID")
                 return None
 
-        #SELECT COLUMNS
+        #COLUMNS
         columns = self.visit(ctx.columnList())
 
         try: self.dataFrame = self.dataFrame[columns]
@@ -126,8 +128,6 @@ class EvalVisitor(lcVisitor):
         saveDataFrame = self.dataFrame
         newDataFrame = self.visit(ctx.select())
 
-        print(newDataFrame)
-        print(saveDataFrame)
         onId = ctx.ID().getText()
         self.dataFrame = saveDataFrame.merge(newDataFrame, on=onId, how='inner')
 
@@ -138,8 +138,12 @@ class EvalVisitor(lcVisitor):
 
             table = innerJoin.getChild(2).getText()
             onId = innerJoin.getChild(4).getText()
-            
-            newDataFrame = pd.read_csv('data/' + table + ".csv")
+
+            if 'asignations' in st.session_state and table in st.session_state.asignations:        
+                newDataFrame = st.session_state.asignations[table]
+            else: 
+                newDataFrame = pd.read_csv('data/' + table + ".csv")
+                
             self.dataFrame = self.dataFrame.merge(newDataFrame, on=onId, how='inner')
     
     def visitConditionList(self, ctx):
@@ -178,10 +182,11 @@ class EvalVisitor(lcVisitor):
         for order in ctx.order():
 
             id = order.ID().getText()
-            order = order.getChild(1).getText()
+            if order.getChildCount() == 2: orderStr = order.getChild(1).getText()
+            else: orderStr = "asc"
 
             orderIDs.append(id)
-            orders.append(order == "asc")
+            orders.append(orderStr == "asc")
         
         self.dataFrame = self.dataFrame.sort_values(by=orderIDs, ascending=orders)
 
@@ -204,24 +209,24 @@ class EvalVisitor(lcVisitor):
         self.dataFrame[newColumnName] = newColumn
         return newColumnName
 
-    def visitMult(self, ctx):    
-        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
-        return oldColumn * float(ctx.getChild(2).getText())
+    def visitMult(self, ctx): 
+        oldColumn = self.visit(ctx.expression())
+        return oldColumn * float(ctx.NUM().getText())
     
     def visitSum(self, ctx):    
-        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
-        return oldColumn + float(ctx.getChild(2).getText())
+        oldColumn = self.visit(ctx.expression())
+        return oldColumn + float(ctx.NUM().getText())
     
     def visitSubst(self, ctx):    
-        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
-        return oldColumn - float(ctx.getChild(2).getText())
+        oldColumn = self.visit(ctx.expression())
+        return oldColumn - float(ctx.NUM().getText())
     
     def visitDiv(self, ctx):    
-        oldColumn = self.dataFrame[self.visit(ctx.getChild(0))]
-        return oldColumn / float(ctx.getChild(2).getText())
+        oldColumn = self.visit(ctx.expression())
+        return oldColumn / float(ctx.NUM().getText())
     
     def visitIdentifier(self, ctx):
-        return ctx.ID().getText()
+        return self.dataFrame[ctx.ID().getText()]
 
 def isNumber(s):
     try:
@@ -237,13 +242,17 @@ def execute_query(query):
         lexer = lcLexer(input_stream)
         token_stream = CommonTokenStream(lexer)
         parser = lcParser(token_stream)
-
+        parser.addErrorListener( MyErrorListener() )
         tree = parser.root()
 
         eval_visitor = EvalVisitor()
         result = eval_visitor.visit(tree)
+
+    except Exception as e:
+        st.error(f"{e}")
+        return None
     except: 
-        st.error("Error parsing your entry, check for possible errors and misspelled IDs.")
+        st.error(f"An unexpected error occurred: {e}")
         return None
 
     return result

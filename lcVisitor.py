@@ -29,21 +29,6 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by lcParser#subQuery.
-    def visitSubQuery(self, ctx:lcParser.SubQueryContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#innerJoinList.
-    def visitInnerJoinList(self, ctx:lcParser.InnerJoinListContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by lcParser#innerJoin.
-    def visitInnerJoin(self, ctx:lcParser.InnerJoinContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by lcParser#columnList.
     def visitColumnList(self, ctx:lcParser.ColumnListContext):
         return self.visitChildren(ctx)
@@ -79,13 +64,13 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by lcParser#orderingList.
-    def visitOrderingList(self, ctx:lcParser.OrderingListContext):
+    # Visit a parse tree produced by lcParser#innerJoinList.
+    def visitInnerJoinList(self, ctx:lcParser.InnerJoinListContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by lcParser#order.
-    def visitOrder(self, ctx:lcParser.OrderContext):
+    # Visit a parse tree produced by lcParser#innerJoin.
+    def visitInnerJoin(self, ctx:lcParser.InnerJoinContext):
         return self.visitChildren(ctx)
 
 
@@ -111,6 +96,21 @@ class lcVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by lcParser#NotMinor.
     def visitNotMinor(self, ctx:lcParser.NotMinorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#subQuery.
+    def visitSubQuery(self, ctx:lcParser.SubQueryContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#orderingList.
+    def visitOrderingList(self, ctx:lcParser.OrderingListContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by lcParser#order.
+    def visitOrder(self, ctx:lcParser.OrderContext):
         return self.visitChildren(ctx)
 
 
