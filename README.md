@@ -10,7 +10,7 @@ Use the package manager [pip](https://pip.pypa.io/en/stable/) to install streaml
 pip install streamlit
 ```
 
-## Utilització
+## Usage
 
 Run:
 ```bash
