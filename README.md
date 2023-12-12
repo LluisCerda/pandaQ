@@ -2,7 +2,7 @@
 
 Implementation of a small SQL interpreter called PandaQ.
 
-## Instal·lació
+## Installation
 
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install streamlit.
 
