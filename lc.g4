@@ -2,12 +2,14 @@ grammar lc;
 
 root: assignation | select | plot;
 
-plot: PLOT ID;
+plot: PLOT ID ';';
 
 assignation: ID ':=' select ;
 
-select: SELECT columnList FROM ID (innerJoinList)? (WHERE conditionList)? (ORDER BY orderingList)? ';'
+select: SELECT columnList FROM ID (innerJoinList)? (WHERE conditionList)? (subQuery)? (ORDER BY orderingList)? ';'
 ;
+
+subQuery: WHERE ID IN '(' select ')';
 
 innerJoinList: innerJoin (innerJoin)*;
 innerJoin: INNER JOIN ID ON ID '=' ID;
@@ -47,6 +49,7 @@ INNER: 'inner';
 JOIN: 'join';
 ON: 'on';
 PLOT: 'plot';
+IN: 'in';
 ID: [a-zA-Z0-9_]+;
 NUM: DIGIT+ ('.' DIGIT+)?;
 DIGIT: '0'..'9';

@@ -29,6 +29,11 @@ class lcVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by lcParser#subQuery.
+    def visitSubQuery(self, ctx:lcParser.SubQueryContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by lcParser#innerJoinList.
     def visitInnerJoinList(self, ctx:lcParser.InnerJoinListContext):
         return self.visitChildren(ctx)

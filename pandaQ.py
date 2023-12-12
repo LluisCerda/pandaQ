@@ -25,6 +25,8 @@ inner join jobs on job_id = job_id where job_title = Programmer order by first_n
 #Possibilitats a afegir
 # - Inner Join funcional amb taules guardades
 # - Operacions amb més d'una operacio i parèntesi
+# - Fer asc com a default en cas de que no hi hagi ordre
+# - Testing amb tots els casos de l'enunciat
 ####################################################
 
 asignations = {}
@@ -99,6 +101,10 @@ class EvalVisitor(lcVisitor):
                 st.error("Error! Misspelled or non existent condition ID")
                 return None
         
+        #SUBQUERY
+        if (ctx.subQuery()):
+            inDataFrame = self.visit(ctx.subQuery())            
+
         #ORDER BY
         if ctx.orderingList(): 
             try: self.visit(ctx.orderingList())
@@ -115,6 +121,16 @@ class EvalVisitor(lcVisitor):
             return None
 
         return self.dataFrame
+    
+    def visitSubQuery(self, ctx):
+        saveDataFrame = self.dataFrame
+        newDataFrame = self.visit(ctx.select())
+
+        print(newDataFrame)
+        print(saveDataFrame)
+        onId = ctx.ID().getText()
+        self.dataFrame = saveDataFrame.merge(newDataFrame, on=onId, how='inner')
+
     
     def visitInnerJoinList(self, ctx):
 
