@@ -25,35 +25,13 @@ class MyErrorListener(ErrorListener):
     def syntaxError(self, recognizer, offendingSymbol, line, column, msg, e):
         raise Exception(f"Syntax Error: {msg}")
 
-    def reportAmbiguity(
-            self,
-            recognizer,
-            dfa,
-            startIndex,
-            stopIndex,
-            exact,
-            ambigAlts,
-            configs):
+    def reportAmbiguity(self, recognizer, dfa, startIndex, stopIndex, exact, ambigAlts, configs):
         raise Exception()
 
-    def reportAttemptingFullContext(
-            self,
-            recognizer,
-            dfa,
-            startIndex,
-            stopIndex,
-            conflictingAlts,
-            configs):
+    def reportAttemptingFullContext(self, recognizer, dfa, startIndex, stopIndex, conflictingAlts, configs):
         raise Exception()
 
-    def reportContextSensitivity(
-            self,
-            recognizer,
-            dfa,
-            startIndex,
-            stopIndex,
-            prediction,
-            configs):
+    def reportContextSensitivity(self, recognizer, dfa, startIndex, stopIndex, prediction, configs):
         raise Exception()
 
 
@@ -112,7 +90,7 @@ class EvalVisitor(lcVisitor):
             try:
                 self.dataFrame = pd.read_csv(
                     'data/' + ctx.ID().getText() + ".csv")
-            except BaseException:
+            except:
                 st.error(f"Error! {tableName} no existe.")
                 return None
 
@@ -120,7 +98,7 @@ class EvalVisitor(lcVisitor):
         if ctx.innerJoinList():
             try:
                 self.visit(ctx.innerJoinList())
-            except BaseException:
+            except:
                 st.error("Error! Misspelled or non existent inner join ID")
                 return None
 
@@ -128,7 +106,7 @@ class EvalVisitor(lcVisitor):
         if ctx.conditionList():
             try:
                 self.visit(ctx.conditionList())
-            except BaseException:
+            except:
                 st.error("Error! Misspelled or non existent condition ID")
                 return None
 
@@ -140,7 +118,7 @@ class EvalVisitor(lcVisitor):
         if ctx.orderingList():
             try:
                 self.visit(ctx.orderingList())
-            except BaseException:
+            except:
                 st.error("Error! Misspelled or non existent ordering ID")
                 return None
 
@@ -149,7 +127,7 @@ class EvalVisitor(lcVisitor):
 
         try:
             self.dataFrame = self.dataFrame[columns]
-        except BaseException:
+        except:
             st.error(f"Error! ID de columna no existente en {tableName}.")
             return None
 
@@ -189,32 +167,24 @@ class EvalVisitor(lcVisitor):
 
     def visitEquals(self, ctx):
         if not isNumber(ctx.getChild(2).getText()):
-            return ctx.getChild(0).getText() + " == " + \
-                "'" + ctx.getChild(2).getText() + "'"
+            return ctx.getChild(0).getText() + " == " + "'" + ctx.getChild(2).getText() + "'"
         else:
-            return ctx.getChild(0).getText() + " == " + \
-                ctx.getChild(2).getText()
+            return ctx.getChild(0).getText() + " == " + ctx.getChild(2).getText()
 
     def visitMinor(self, ctx):
         if not isNumber(ctx.getChild(2).getText()):
-            return ctx.getChild(0).getText() + " < " + "'" + \
-                ctx.getChild(2).getText() + "'"
+            return ctx.getChild(0).getText() + " < " + "'" + ctx.getChild(2).getText() + "'"
         return ctx.getChild(0).getText() + " < " + ctx.getChild(2).getText()
 
     def visitNotEquals(self, ctx):
         if not isNumber(ctx.getChild(3).getText()):
-            return "not " + \
-                ctx.getChild(1).getText() + " == " + "'" + \
-                ctx.getChild(3).getText() + "'"
-        return "not " + ctx.getChild(1).getText() + \
-            " == " + ctx.getChild(3).getText()
+            return "not " + ctx.getChild(1).getText() + " == " + "'" + ctx.getChild(3).getText() + "'"
+        return "not " + ctx.getChild(1).getText() + " == " + ctx.getChild(3).getText()
 
     def visitNotMinor(self, ctx):
         if not isNumber(ctx.getChild(3).getText()):
-            return "not " + ctx.getChild(1).getText() + \
-                " < " + "'" + ctx.getChild(3).getText() + "'"
-        return "not " + ctx.getChild(1).getText() + \
-            " < " + ctx.getChild(3).getText()
+            return "not " + ctx.getChild(1).getText() + " < " + "'" + ctx.getChild(3).getText() + "'"
+        return "not " + ctx.getChild(1).getText() + " < " + ctx.getChild(3).getText()
 
     def visitOrderingList(self, ctx):
         orderIDs = []
@@ -296,7 +266,7 @@ def execute_query(query):
     except Exception as e:
         st.error(f"{e}")
         return None
-    except BaseException:
+    except:
         st.error(f"An unexpected error occurred: {e}")
         return None
 

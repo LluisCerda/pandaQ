@@ -29,7 +29,7 @@ You can now view PandaQ in your browser.
 
 - Error with non decimal values, .0 needed: 2 -> No, 2.0 -> Yes
 
-## Extra
+## Extra Information
 
 - Plot works by using only the numeric columns.
 
