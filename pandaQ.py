@@ -9,13 +9,6 @@ from antlr4.error.ErrorListener import ErrorListener
 
 asignations = {}
 
-####################################################
-# TODO
-# Format pep8
-####################################################
-
-# Parser custom error Listener
-
 
 class MyErrorListener(ErrorListener):
 
