@@ -1,4 +1,4 @@
-grammar lc;
+grammar pandaQ;
 
 root: assignation ';' | select ';' | plot ';';
 
