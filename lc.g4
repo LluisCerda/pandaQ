@@ -56,7 +56,7 @@ PLOT: 'plot';
 IN: 'in';
 ASC: 'asc';
 DESC: 'desc';
-ID: [a-zA-Z0-9_]+;
-NUM: DIGIT+ ('.' DIGIT+)?;
+ID: [a-zA-Z_]+;
+NUM: DIGIT+ ('.' DIGIT*)?;
 DIGIT: '0'..'9';
 

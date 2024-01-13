@@ -23,12 +23,6 @@ You can now view PandaQ in your browser.
 - Added the possibility to use saved tables with inner join.
 - Custom Error Listener for ANTLR Parser.
 
-## Known-Bugs
-
-- ID1 as ID2 will create a new column ID2 with ID1 in each file
-
-- Error with non decimal values, .0 needed: 2 -> No, 2.0 -> Yes
-
 ## Extra Information
 
 - Plot works by using only the numeric columns.

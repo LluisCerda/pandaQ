@@ -9,7 +9,6 @@ from antlr4.error.ErrorListener import ErrorListener
 
 asignations = {}
 
-
 class MyErrorListener(ErrorListener):
 
     def __init__(self):
@@ -97,7 +96,7 @@ class EvalVisitor(lcVisitor):
     def visitSelect(self, ctx):
 
         tableName = ctx.ID().getText()
-
+        
         # FROM
         if 'asignations' in st.session_state and tableName in st.session_state.asignations:
             self.dataFrame = st.session_state.asignations[tableName]
@@ -139,7 +138,6 @@ class EvalVisitor(lcVisitor):
 
         # COLUMNS
         columns = self.visit(ctx.columnList())
-
         try:
             self.dataFrame = self.dataFrame[columns]
         except BaseException:
